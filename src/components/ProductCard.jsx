@@ -39,6 +39,10 @@ export default function ProductCard({ product }) {
           alt={product.name}
           className="product-card__img"
           loading="lazy"
+          onError={e => {
+            e.target.onerror = null;
+            e.target.src = `https://placehold.co/600x600/f5ede6/78716c?text=${encodeURIComponent(product.name.split(' ').slice(0,2).join('+')).replace(/%2B/g,'+')}`;
+          }}
         />
         {product.badge && (
           <span className={`product-card__badge badge ${badgeClass}`}>{product.badge}</span>
